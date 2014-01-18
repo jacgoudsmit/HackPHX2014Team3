@@ -6,6 +6,7 @@
 
 TinyGPS gps;
 long lat, lon;
+float flat, flon;
 unsigned long fix_age, time, date, speed, course;
 unsigned long chars;
 unsigned short sentences, failed_checksum;
@@ -23,7 +24,7 @@ void setup(){
   SeeedOled.setPageMode();           //Set addressing mode to Page Mode
   SeeedOled.setTextXY(3,4);          //Set the cursor to Xth Page, Yth Column  
   SeeedOled.putString("HeatSyncer"); //Print the String
-  delay(1000);
+  delay(2000);
   SeeedOled.clearDisplay();
 }
 
@@ -33,14 +34,16 @@ void loop(){
       gps.get_position(&lat, &lon, &fix_age);
       SeeedOled.setTextXY(0,0);
       SeeedOled.putString("Lat:");
-      SeeedOled.setTextXY(0,7);
+      SeeedOled.setTextXY(0,6);
       SeeedOled.putNumber(lat);
       SeeedOled.setTextXY(1,0);
       SeeedOled.putString("Long:"); 
-      SeeedOled.setTextXY(1,6);
+      SeeedOled.setTextXY(1,5);
       SeeedOled.putNumber(lon);
-      Serial.println(lat);
-      Serial.println(lon);
+      Serial.println(flat);
+      Serial.println(flon);
     }
  }
 }
+
+
