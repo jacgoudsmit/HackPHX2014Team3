@@ -11,6 +11,8 @@ unsigned long fix_age, time, date, speed, course;
 unsigned long chars;
 unsigned short sentences, failed_checksum;
 
+extern unsigned char hsllogo[] PROGMEM;
+
 void setup(){
   Serial.begin(SerialBaud);
   Serial1.begin(Serial1Baud);
@@ -20,12 +22,13 @@ void setup(){
   PORTB |= 0x21;
 
   SeeedOled.clearDisplay();          //clear the screen and set start position to top left corner
+  SeeedOled.drawBitmap(hsllogo, 1024);
+  delay(1000);
+
   SeeedOled.setNormalDisplay();      //Set display to normal mode (i.e non-inverse mode)
   SeeedOled.setPageMode();           //Set addressing mode to Page Mode
-  SeeedOled.setTextXY(3,4);          //Set the cursor to Xth Page, Yth Column  
+  SeeedOled.setTextXY(3,3);          //Set the cursor to Xth Page, Yth Column  
   SeeedOled.putString("HeatSyncer"); //Print the String
-  delay(2000);
-  SeeedOled.clearDisplay();
 }
 
 void loop(){
@@ -45,5 +48,4 @@ void loop(){
     }
  }
 }
-
 
